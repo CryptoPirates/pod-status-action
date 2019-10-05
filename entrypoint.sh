@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# echo "Installing docker"
-# apk add --update docker
-# service docker start
-
 echo "Installing gcloud and kubectl"
 curl -sSL https://sdk.cloud.google.com | bash
 PATH=$PATH:/root/google-cloud-sdk/bin
@@ -13,7 +9,6 @@ kubectl version
 
 echo "Getting kubeconfig file from GKE"
 echo "${INPUT_GKEAPPLICATIONCREDENTIALS}" | base64 -d > /tmp/account.json
-gcloud auth configure-docker
 gcloud auth activate-service-account --key-file=/tmp/account.json
 gcloud config set project $INPUT_GKEPROJECTID
 gcloud container clusters get-credentials $INPUT_GKECLUSTERNAME --zone $INPUT_GKELOCATIONZONE --project $INPUT_GKEPROJECTID
