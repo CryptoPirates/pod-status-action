@@ -1,6 +1,6 @@
 FROM google/cloud-sdk:latest as base
 
-RUN apk add --update bash
+RUN apt-get update && apt-get install bash
 
 COPY entrypoint.sh /entrypoint.sh
 
