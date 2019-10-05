@@ -17,8 +17,8 @@ inputs:
   gkeLocationZone:
     description: The cluster's location zone.
     required: true
-  podNames:
-    description: A list of pod names to check.
+  podName:
+    description: A pod name to check.
     required: true
 runs:
   using: 'docker'

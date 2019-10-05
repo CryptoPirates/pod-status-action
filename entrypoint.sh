@@ -26,24 +26,21 @@ IFS='/n'
 read -ra LINES <<< "${RESPONSE}"
 IFS=' '
 
-for j in "${INPUT_PODNAMES[@]}"; do
-    RUNNING="false"
-    for i in "${LINES[@]}"; do
-        # Check to see if this is the pod we want to check
-        if [[ $1 == *"${j}"* ]]; then
-            # Check to make sure the pod is running
-            if [[ $1 == *"Running"* ]]; then
-                RUNNING="true"
-            fi
+RUNNING="false"
+for i in "${LINES[@]}"; do
+    # Check to see if this is the pod we want to check
+    if [[ $1 == *"${INPUT_PODNAME}"* ]]; then
+        # Check to make sure the pod is running
+        if [[ $1 == *"Running"* ]]; then
+            RUNNING="true"
         fi
-    done
-
-    if [[ "${RUNNING}" == "true" ]]; then
-        echo "${j} is running."
-    else
-        echo "${j} is not running!"
-        exit 1
     fi
 done
 
-exit 0
+if [[ "${RUNNING}" == "true" ]]; then
+    echo "${INPUT_PODNAME} is running."
+    exit 0
+else
+    echo "${INPUT_PODNAME} is not running!"
+    exit 1
+fi
