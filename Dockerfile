@@ -1,6 +1,6 @@
-FROM golang:1.13-alpine as builder
+FROM google/cloud-sdk:latest as base
 
-RUN apk add --update python curl which bash git
+RUN apk add --update bash
 
 COPY entrypoint.sh /entrypoint.sh
 
