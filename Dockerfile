@@ -1,6 +1,6 @@
-FROM google/cloud-sdk:latest as base
+FROM alpine as base
 
-RUN apt-get update && apt-get install bash
+RUN apk add --update bash
 
 COPY entrypoint.sh /entrypoint.sh
 
