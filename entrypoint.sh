@@ -21,22 +21,29 @@ export KUBECONFIG="$HOME/.kube/config"
 
 echo "Getting the status of ${INPUT_PODNAMES}"
 RESPONSE=$(echo kubectl get pods -n $INPUT_GKENAMESPACE)
+echo $RESPONSE
 IFS='/n'
 read -ra LINES <<< "${RESPONSE}"
 IFS=' '
-RUNNING="false"
-for i in "${LINES[@]}"; do
-    # Check to see if this is the pod we want to check
-    if [[ $1 == *"${INPUT_PODNAME}"* ]]; then
-        # Check to make sure the pod is running
-        if [[ $1 == *"Running"* ]]; then
-            RUNNING="true"
+
+for j in "${INPUT_PODNAMES[@]}"; do
+    RUNNING="false"
+    for i in "${LINES[@]}"; do
+        # Check to see if this is the pod we want to check
+        if [[ $1 == *"${j}"* ]]; then
+            # Check to make sure the pod is running
+            if [[ $1 == *"Running"* ]]; then
+                RUNNING="true"
+            fi
         fi
+    done
+
+    if [[ "${RUNNING}" == "true" ]]; then
+        echo "${j} is running."
+    else
+        echo "${j} is not running!"
+        exit 1
     fi
 done
 
-if [[ "${RUNNING}" == "true" ]]; then
-    exit(0)
-else
-    exit(1)
-fi
+exit 0

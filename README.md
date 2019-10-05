@@ -23,9 +23,9 @@ Checks to see if a given pod is running in GKE.
 
 **Required** The cluster's location zone.
 
-### `podName`
+### `podNames`
 
-**Required** A pod name to check.
+**Required** A list of pod names to check.
 
 ## Example usage
 
@@ -37,5 +37,7 @@ with:
     gkeProjectID: ${{ secrets.GKE_PROJECT_ID }}
     gkeClusterName: ${{ secrets.GKE_CLUSTER_NAME }}
     gkeLocationZone: ${{ secrets.GKE_LOCATION_ZONE }}
-    podName: ${{ secrets.POD_NAME }}
+    podNames:
+        - pod1
+        - pod2
 ```
