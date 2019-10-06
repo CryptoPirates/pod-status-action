@@ -1,19 +1,5 @@
 #!/bin/bash
 
-echo "Installing gcloud and kubectl"
-curl -sSL https://sdk.cloud.google.com | bash
-PATH=$PATH:/root/google-cloud-sdk/bin
-source /github/home/google-cloud-sdk/path.bash.inc
-gcloud components install kubectl
-kubectl version
-
-echo "Getting kubeconfig file from GKE"
-echo "${INPUT_GKEAPPLICATIONCREDENTIALS}" | base64 -d > /tmp/account.json
-gcloud auth activate-service-account --key-file=/tmp/account.json
-gcloud config set project $INPUT_GKEPROJECTID
-gcloud container clusters get-credentials $INPUT_GKECLUSTERNAME --zone $INPUT_GKELOCATIONZONE --project $INPUT_GKEPROJECTID
-export KUBECONFIG="$HOME/.kube/config"
-
 echo "Getting the status of ${INPUT_PODNAME}"
 kubectl get pods -n platform
 RESPONSE=$(echo kubectl get pods -n $INPUT_GKENAMESPACE)

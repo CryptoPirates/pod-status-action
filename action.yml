@@ -23,3 +23,9 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{ inputs.gkeApplicationCredentials }}
+    - ${{ inputs.gkeNamespace }}
+    - ${{ inputs.gkeProjectID }}
+    - ${{ inputs.gkeClusterName }}
+    - ${{ inputs.gkeLocationZone }}
