@@ -6,7 +6,7 @@ ARG GKEPROJECTID
 ARG GKECLUSTERNAME
 ARG GKELOCATIONZONE
 
-RUN apk add --update bash
+RUN apt-get update && apt-get install bash
 
 WORKDIR /
 RUN gcloud components install kubectl
