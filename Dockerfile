@@ -1,4 +1,4 @@
-FROM golang:1.13-alpine as builder
+FROM google/cloud-sdk:latest as base
 
 ARG GKEAPPLICATIONCREDENTIALS
 ARG GKENAMESPACE
@@ -6,12 +6,9 @@ ARG GKEPROJECTID
 ARG GKECLUSTERNAME
 ARG GKELOCATIONZONE
 
-RUN apk add --update python curl bash docker
+RUN apk add --update bash
 
 WORKDIR /
-RUN curl -sSL https://sdk.cloud.google.com | bash
-ENV PATH=$PATH:/root/google-cloud-sdk/bin
-RUN /bin/bash -c "source /github/home/google-cloud-sdk/path.bash.inc"
 RUN gcloud components install kubectl
 RUN kubectl version
 
