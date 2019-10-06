@@ -47,9 +47,9 @@ for j in "${NAMES[@]}"; do
     done
 
     if [[ "${RUNNING}" == "true" ]]; then
-        echo "${INPUT_PODNAME} is running."
+        echo "${j} is running."
     else
-        echo "${INPUT_PODNAME} is not running!"
+        echo "${j} is not running!"
         exit 1
     fi
 done
