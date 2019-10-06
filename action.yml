@@ -23,8 +23,8 @@ inputs:
   gitAccessToken:
     description: The access token associated with the user passed to gitUsername.
     required: true
-  podName:
-    description: A pod name to check.
+  podNames:
+    description: A comma-separated list of pod names to check.
     required: true
 runs:
   using: 'docker'

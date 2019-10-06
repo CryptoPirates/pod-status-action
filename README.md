@@ -37,7 +37,7 @@ with:
     gkeProjectID: ${{ secrets.GKE_PROJECT_ID }}
     gkeClusterName: ${{ secrets.GKE_CLUSTER_NAME }}
     gkeLocationZone: ${{ secrets.GKE_LOCATION_ZONE }}
-    podNames:
-        - pod1
-        - pod2
+    gitUsername: ${{ secrets.GIT_USERNAME }}
+    gitAccessToken: ${{ secrets.GIT_ACCESS_TOKEN }}
+    podNames: pod1,pod2
 ```
