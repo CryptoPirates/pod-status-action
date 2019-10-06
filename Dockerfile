@@ -10,7 +10,6 @@ RUN apk add --update python curl bash
 
 RUN echo "Installing docker"
 RUN apk add --update docker
-RUN service docker start
 
 RUN echo "Installing gcloud and kubectl"
 RUN curl -sSL https://sdk.cloud.google.com | bash
