@@ -6,10 +6,9 @@ ARG GKEPROJECTID
 ARG GKECLUSTERNAME
 ARG GKELOCATIONZONE
 
-RUN apt-get update && apt-get install bash
-
-WORKDIR /
-RUN gcloud components install kubectl
+RUN apt-get update
+RUN apt-get install bash
+RUN apt-get install kubectl
 RUN kubectl version
 
 RUN echo "${GKEAPPLICATIONCREDENTIALS}" | base64 -d > /tmp/account.json
