@@ -2,6 +2,12 @@ name: 'Pod Status'
 description: Checks to see if a given pod is running in GKE.
 author: Colin Campbell
 inputs:
+  gitUsername:
+    description: A GitHub user's username.
+    required: true
+  gitAccessToken:
+    description: The GitHub user's access token.
+    required: true
   gkeApplicationCredentials:
     description: The service account credentials JSON file encoded as a base64 string to access the GKE API.
     required: true
