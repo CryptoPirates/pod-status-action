@@ -5,7 +5,7 @@ gcloud auth configure-docker
 gcloud auth activate-service-account --key-file=/tmp/account.json
 gcloud config set project $INPUT_GKEPROJECTID
 gcloud container clusters get-credentials $INPUT_GKECLUSTERNAME --zone $INPUT_GKELOCATIONZONE --project $INPUT_GKEPROJECTID
-export KUBECONFIG=/.kube/config
+export KUBECONFIG=$HOME/.kube/config
 
 echo "Getting the status of ${INPUT_PODNAME}"
 kubectl get pods -n platform
